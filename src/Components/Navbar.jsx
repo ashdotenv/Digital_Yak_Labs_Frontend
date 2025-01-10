@@ -1,48 +1,74 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const toggleMobileMenu = () => {
-      setMobileMenuOpen(!mobileMenuOpen);
+        setMobileMenuOpen(!mobileMenuOpen);
     };
+
     return (
         <>
             {/* Navbar */}
             <nav className="bg-white shadow-lg">
                 <div className="container mx-auto flex items-center justify-between py-4 px-6 lg:px-16">
                     {/* Logo */}
-                    <Link to="/" className="text-2xl font-bold text-gray-800">
+                    <NavLink to="/" className="text-2xl font-bold text-gray-800">
                         Digital Yak Labs
-                    </Link>
+                    </NavLink>
 
                     {/* Navigation Links */}
                     <ul className="hidden lg:flex space-x-8 text-lg font-medium text-gray-600">
                         <li>
-                            <Link to="/" className="hover:text-blue-500">
+                            <NavLink
+                                to="/"
+                                className={({ isActive }) =>
+                                    isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                }
+                            >
                                 Home
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/about" className="hover:text-blue-500">
+                            <NavLink
+                                to="/about"
+                                className={({ isActive }) =>
+                                    isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                }
+                            >
                                 About
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/services" className="hover:text-blue-500">
+                            <NavLink
+                                to="/services"
+                                className={({ isActive }) =>
+                                    isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                }
+                            >
                                 Services
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/portfolio" className="hover:text-blue-500">
+                            <NavLink
+                                to="/portfolio"
+                                className={({ isActive }) =>
+                                    isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                }
+                            >
                                 Portfolio
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/contact" className="hover:text-blue-500">
+                            <NavLink
+                                to="/contact"
+                                className={({ isActive }) =>
+                                    isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                }
+                            >
                                 Contact
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
 
@@ -74,37 +100,66 @@ const Navbar = () => {
                     <div id="mobile-menu" className="lg:hidden bg-white">
                         <ul className="flex flex-col items-center space-y-4 py-4 text-lg font-medium text-gray-600">
                             <li>
-                                <Link to="/" className="hover:text-blue-500" onClick={toggleMobileMenu}>
+                                <NavLink
+                                    to="/"
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                    }
+                                    onClick={toggleMobileMenu}
+                                >
                                     Home
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to="/about" className="hover:text-blue-500" onClick={toggleMobileMenu}>
+                                <NavLink
+                                    to="/about"
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                    }
+                                    onClick={toggleMobileMenu}
+                                >
                                     About
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to="/services" className="hover:text-blue-500" onClick={toggleMobileMenu}>
+                                <NavLink
+                                    to="/services"
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                    }
+                                    onClick={toggleMobileMenu}
+                                >
                                     Services
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to="/portfolio" className="hover:text-blue-500" onClick={toggleMobileMenu}>
+                                <NavLink
+                                    to="/portfolio"
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                    }
+                                    onClick={toggleMobileMenu}
+                                >
                                     Portfolio
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to="/contact" className="hover:text-blue-500" onClick={toggleMobileMenu}>
+                                <NavLink
+                                    to="/contact"
+                                    className={({ isActive }) =>
+                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                    }
+                                    onClick={toggleMobileMenu}
+                                >
                                     Contact
-                                </Link>
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
                 )}
             </nav>
-
         </>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;
