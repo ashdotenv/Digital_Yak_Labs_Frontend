@@ -1,6 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [status, setStatus] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('Sending...');
+
+    try {
+      const response = await fetch('http://localhost:5000/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 200) {
+        setStatus('Message sent successfully!');
+      } else {
+        setStatus('Failed to send message.');
+      }
+    } catch (error) {
+      setStatus('Error sending message.');
+    }
+  };
+
   return (
     <div className="bg-gray-50 text-gray-800">
       {/* Contact Form Section */}
@@ -10,7 +49,7 @@ const Contact = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contact Form */}
             <div>
-              <form action="#" method="POST" className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-lg font-medium text-gray-700">Your Name</label>
                   <input
@@ -18,6 +57,8 @@ const Contact = () => {
                     id="name"
                     name="name"
                     className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -28,6 +69,8 @@ const Contact = () => {
                     id="email"
                     name="email"
                     className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -38,6 +81,8 @@ const Contact = () => {
                     name="message"
                     rows="4"
                     className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    value={formData.message}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -50,6 +95,7 @@ const Contact = () => {
                   </button>
                 </div>
               </form>
+              {status && <p className="mt-4 text-center text-lg">{status}</p>}
             </div>
 
             {/* Contact Details */}

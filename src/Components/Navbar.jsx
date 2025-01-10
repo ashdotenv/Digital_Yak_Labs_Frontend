@@ -70,6 +70,16 @@ const Navbar = () => {
                                 Contact
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink
+                                to="/blogs"
+                                className={({ isActive }) =>
+                                    isActive ? 'text-blue-500' : 'hover:text-blue-500'
+                                }
+                            >
+                                Blogs
+                            </NavLink>
+                        </li>
                     </ul>
 
                     {/* Mobile Menu Button */}
