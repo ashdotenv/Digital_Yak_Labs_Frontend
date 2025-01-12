@@ -6,6 +6,8 @@ import Services from "./Pages/Services"
 import Portfolio from "./Pages/Portfolio"
 import Navbar from "./Components/Navbar"
 import Footer from "./Components/Footer"
+import Blogs from "./Pages/blogs"
+import BlogItems from "./blog/Generative-AI-Transforming-Industries-in-2025"
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Services" element={<Services />} />
         <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/Blogs" element={<Blogs />} />
+        
       </Routes>
         <Footer />
     </>
