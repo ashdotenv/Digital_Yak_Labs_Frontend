@@ -9,7 +9,7 @@ const Services = () => {
           Our <span className="text-blue-600">Services</span>
         </h2>
         <p className="text-gray-600 text-lg mb-12">
-          We provide a wide range of innovative and results-driven services tailored to meet your business needs.
+          We provide a wide range of innovative and results-driven services tailoblue to meet your business needs.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

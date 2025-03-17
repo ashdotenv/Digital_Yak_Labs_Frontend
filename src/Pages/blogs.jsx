@@ -1,58 +1,77 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Blogs() {
-  const blogs = [
-    {
-      id: 1,
-      title: "Generative AI: Transforming Industries in 2025",
-      image: '../uploads/ai-2025.png', // Assign the imported image directly
-      link: '../blog/Generative-AI-Transforming-Industries-in-2025.jsx',
-    },
-    // Uncomment and add other blogs if needed
-    {
-      id: 2,
-      title: "CSS Tips",
-      image: "https://via.placeholder.com/400x250", // Replace with actual image URL
-      link: "#",
-    },
-    {
-      id: 3,
-      title: "JavaScript ES6",
-      image: "https://via.placeholder.com/400x250", // Replace with actual image URL
-      link: "#",
-    },
-  ];
+function Blog() {
+  // Blog data with initial view count
+  const [views, setViews] = useState(1500); // Initial view count
+  const blog = {
+    id: 1,
+    title: "Exploring the Power of ChatGPT: Revolutionizing Conversations with AI",
+    image: "../uploads/ai-2025.png",
+    link: "../blog/Revolutionizing-Conversations-with-AI",
+    author: "Abhaya Bikram Shahi",
+    date: "January 16, 2025",
+  };
+
+  // Increment the views when the blog is visited (simulate real-time views)
+  useEffect(() => {
+    setViews((prevViews) => prevViews + 1); // Increment view on page load
+  }, []);
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-black mb-12">Latest Blogs</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
-            <div key={blog.id} className="bg-white shadow-lg rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
-              {/* Blog Image */}
-              <img
-                src={blog.image}
-                alt={blog.title}
-                className="w-full h-56 object-cover transition-all duration-300 hover:scale-110"
-              />
-              <div className="p-6">
-                {/* Blog Link */}
-                <Link
-                  to={blog.link}
-                  className="text-lg font-semibold text-black hover:text-red-600 dark:text-white dark:hover:text-red-600 transition-colors duration-300"
-                >
-                  {blog.title}
-                </Link>
-                <p className="mt-2 text-sm text-gray-500">Posted on January 12, 2025</p> {/* Example Date */}
-              </div>
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-6">
+        {/* Blog Title */}
+        <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
+          {blog.title}
+        </h2>
+        
+        {/* Blog Content */}
+        <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+          <div className="overflow-hidden">
+            <img
+              src={blog.image}
+              alt={blog.title}
+              className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110"
+            />
+          </div>
+          <div className="p-6">
+            <div className="text-lg font-semibold text-gray-800">{blog.title}</div>
+            {/* Author and Date */}
+            <div className="mt-2 text-sm text-gray-500 flex justify-between items-center">
+              <span className="italic">By {blog.author}</span>
+              <span>{blog.date}</span>
             </div>
-          ))}
+
+            <div className="mt-4 text-sm text-gray-500">
+              {/* Real-Time View Count */}
+              <span>{views} Views</span>
+            </div>
+
+            {/* Blog Content */}
+            <div className="mt-4 text-gray-700">
+              <p>
+                We created this blog to explore the fascinating world of
+                ChatGPT and how it revolutionizes conversations with AI. This
+                post covers the many applications of ChatGPT, from assisting in
+                daily tasks to enhancing productivity and creativity.
+              </p>
+            </div>
+
+            {/* Link to the actual blog page */}
+            <div className="mt-6">
+              <Link
+                to={blog.link}
+                className="text-lg font-semibold text-purple-600 hover:text-purple-800 transition-colors duration-300 block"
+              >
+                Continue Reading
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-export default Blogs;
+export default Blog;

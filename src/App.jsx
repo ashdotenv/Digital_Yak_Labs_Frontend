@@ -6,8 +6,9 @@ import Services from "./Pages/Services"
 import Portfolio from "./Pages/Portfolio"
 import Navbar from "./Components/Navbar"
 import Footer from "./Components/Footer"
-import Blogs from "./Pages/blogs"
-import BlogItems from "./blog/Generative-AI-Transforming-Industries-in-2025"
+import Blogs from "./Pages/Blogs"
+import BlogItems from "./Blog/Revolutionizing-Conversations-with-AI"
+import Privacypolicy from "./Pages/Privacypolicy"
 
 function App() {
 
@@ -20,7 +21,10 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Services" element={<Services />} />
         <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/privacypolicy" element={<Privacypolicy />} />
         <Route path="/Blogs" element={<Blogs />} />
+        <Route path="/blog/Revolutionizing-Conversations-with-AI" element={<BlogItems />} />
+        
         
       </Routes>
         <Footer />

@@ -1,176 +1,53 @@
-    import React, { useState } from 'react';
-    import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
-    const Navbar = () => {
-        const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-        const toggleMobileMenu = () => {
-            setMobileMenuOpen(!mobileMenuOpen);
-        };
+  return (
+    <header className="bg-white  transition-all duration-300 ease-in-out">
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        {/* Logo */}
+        <Link to="/" className="text-3xl font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+          Digital Yak Labs
+        </Link>
 
-        return (
-            <>
-                {/* Navbar */}
-                <nav className="bg-white ">
-                    <div className="container mx-auto flex items-center justify-between py-4 px-6 lg:px-16">
-                        {/* Logo */}
-                        <NavLink to="/" className="text-2xl font-bold text-gray-800">
-                            Digital Yak Labs
-                        </NavLink>
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex space-x-8">
+          <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300">Home</Link>
+          <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300">About</Link>
+          <Link to="/services" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300">Services</Link>
+          <Link to="/portfolio" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300">Portfolio</Link>
+          <Link to="/blogs" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300">Blogs</Link>
+          <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300">Contact</Link>
+        </nav>
 
-                        {/* Navigation Links */}
-                        <ul className="hidden lg:flex space-x-8 text-lg font-medium text-gray-600">
-                            <li>
-                                <NavLink
-                                    to="/"
-                                    className={({ isActive }) =>
-                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                    }
-                                >
-                                    Home
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/about"
-                                    className={({ isActive }) =>
-                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                    }
-                                >
-                                    About
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/services"
-                                    className={({ isActive }) =>
-                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                    }
-                                >
-                                    Services
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/portfolio"
-                                    className={({ isActive }) =>
-                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                    }
-                                >
-                                    Portfolio
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/Blogs"
-                                    className={({ isActive }) =>
-                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                    }
-                                >
-                                    Blogs
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/contact"
-                                    className={({ isActive }) =>
-                                        isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                    }
-                                >
-                                    Contact
-                                </NavLink>
-                            </li>
-                        
-                        </ul>
 
-                        {/* Mobile Menu Button */}
-                        <button
-                            id="menu-btn"
-                            className="lg:hidden focus:outline-none"
-                            onClick={toggleMobileMenu}
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-8 w-8 text-gray-800"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h16m-7 6h7"
-                                />
-                            </svg>
-                        </button>
-                    </div>
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-gray-700 focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
 
-                    {/* Mobile Menu */}
-                    {mobileMenuOpen && (
-                        <div id="mobile-menu" className="lg:hidden bg-white">
-                            <ul className="flex flex-col items-center space-y-4 py-4 text-lg font-medium text-gray-600">
-                                <li>
-                                    <NavLink
-                                        to="/"
-                                        className={({ isActive }) =>
-                                            isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                        }
-                                        onClick={toggleMobileMenu}
-                                    >
-                                        Home
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink
-                                        to="/about"
-                                        className={({ isActive }) =>
-                                            isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                        }
-                                        onClick={toggleMobileMenu}
-                                    >
-                                        About
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink
-                                        to="/services"
-                                        className={({ isActive }) =>
-                                            isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                        }
-                                        onClick={toggleMobileMenu}
-                                    >
-                                        Services
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink
-                                        to="/portfolio"
-                                        className={({ isActive }) =>
-                                            isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                        }
-                                        onClick={toggleMobileMenu}
-                                    >
-                                        Portfolio
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink
-                                        to="/contact"
-                                        className={({ isActive }) =>
-                                            isActive ? 'text-blue-500' : 'hover:text-blue-500'
-                                        }
-                                        onClick={toggleMobileMenu}
-                                    >
-                                        Contact
-                                    </NavLink>
-                                </li>
-                            </ul>
-                        </div>
-                    )}
-                </nav>
-            </>
-        );
-    };
+      {/* Mobile Menu */}
+      {isOpen && (
+        <nav
+          className="md:hidden bg-white border-t border-gray-200 shadow-lg transform transition-all duration-500 ease-in-out opacity-100 translate-y-0"
+          style={{ animation: "slideIn 0.5s ease-out" }}
+        >
+          <Link to="/" className="block px-6 py-4 text-gray-700 hover:bg-gray-100 transition-all duration-300">Home</Link>
+          <Link to="/about" className="block px-6 py-4 text-gray-700 hover:bg-gray-100 transition-all duration-300 delay-100">About</Link>
+          <Link to="/services" className="block px-6 py-4 text-gray-700 hover:bg-gray-100 transition-all duration-300 delay-200">Services</Link>
+          <Link to="/portfolio" className="block px-6 py-4 text-gray-700 hover:bg-gray-100 transition-all duration-300 delay-300">Portfolio</Link>
+          <Link to="/contact" className="block px-6 py-4 text-gray-700 hover:bg-gray-100 transition-all duration-300 delay-300">Contact</Link>
+        </nav>
+      )}
+    </header>
+  );
+};
 
-    export default Navbar;
+export default Navbar;
